@@ -3,12 +3,35 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="using:Client.ViewModels"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d"
+        d:DesignWidth="800"
+        d:DesignHeight="450"
         x:Class="Client.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Title="Client">
-    <TextBlock Text="{Binding PageTitle}"
-               HorizontalAlignment="Center"
-               VerticalAlignment="Center"
-               FontSize="16" />
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel />
+    </Design.DataContext>
+
+    <Grid ColumnDefinitions="200, *" Background="{DynamicResource PrimaryBackgroundColor}">
+        <Border Padding="10" Background="{DynamicResource PrimaryGradient}" BorderBrush="#020425" BorderThickness="1">
+            <Grid RowDefinitions="*, Auto">
+                <StackPanel Grid.Row="0">
+                    <TextBlock Text="RunStore" FontSize="24" FontWeight="Bold" Margin="0" Foreground="{DynamicResource PrimaryTextColor}" />
+                    <Button Content="Home" Command="{Binding GotoHomeCommand}" Margin="10" HorizontalAlignment="Stretch" />
+                    <Button Content="Products" Command="{Binding GotoProductsCommand}" Margin="10" HorizontalAlignment="Stretch" />
+
+                </StackPanel>
+
+                <Button Grid.Row="1" Content="Settings" Margin="10" HorizontalAlignment="Stretch" />
+
+
+            </Grid>
+
+
+        </Border>
+        <UserControl Grid.Column="1" Content="{Binding CurrentView}" Padding="20" />
+
+    </Grid>
 </Window>
