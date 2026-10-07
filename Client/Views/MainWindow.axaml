@@ -26,22 +26,36 @@
                     </StackPanel>
 
                     <!-- Classes="icon" ger Label ikonfonten, se AppStyles.axaml -->
-                    <Button Command="{Binding GoToHomeCommand}">
+                    <Button Classes="menu" Command="{Binding GoToHomeCommand}">
                         <StackPanel Orientation="Horizontal" Spacing="10">
                             <Label Classes="icon" Content="&#xe2c2;" />
                             <Label Content="Home" />
                         </StackPanel>
                     </Button>
 
-                    <Button Command="{Binding GoToProductsCommand}">
+                    <Button Classes="menu" Command="{Binding GoToProductsCommand}">
                         <StackPanel Orientation="Horizontal" Spacing="10">
                             <Label Classes="icon" Content="&#xe416;" />
                             <Label Content="Products" />
                         </StackPanel>
                     </Button>
+
+                    <Button Classes="menu" Command="{Binding GoToOrdersCommand}">
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <Label Classes="icon" Content="&#xe416;" />
+                            <Label Content="Orders" />
+                        </StackPanel>
+                    </Button>
+
+                    <Button Classes="menu" Command="{Binding GoToCustomersCommand}">
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <Label Classes="icon" Content="&#xe2c2;" />
+                            <Label Content="Customers" />
+                        </StackPanel>
+                    </Button>
                 </StackPanel>
 
-                <Button Grid.Row="1">
+                <Button Classes="menu" Grid.Row="1">
                     <StackPanel Orientation="Horizontal" Spacing="10">
                         <Label Classes="icon" Content="&#xe270;" />
                         <Label Content="Settings" />

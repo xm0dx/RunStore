@@ -8,6 +8,8 @@ public partial class MainWindowViewModel : ViewModelBase
     // sidorna i appen, skapas en gång
     private readonly HomeViewModel _homeViewModel = new();
     private readonly ProductViewModel _productViewModel = new();
+    private readonly OrdersViewModel _ordersViewModel = new();
+    private readonly CustomersViewModel _customersViewModel = new();
 
     // sidan som visas just nu, MainWindow binder till CurrentView
     [ObservableProperty]
@@ -29,5 +31,17 @@ public partial class MainWindowViewModel : ViewModelBase
     private void GoToProducts()
     {
         CurrentView = _productViewModel;
+    }
+
+    [RelayCommand]
+    private void GoToOrders()
+    {
+        CurrentView = _ordersViewModel;
+    }
+
+    [RelayCommand]
+    private void GoToCustomers()
+    {
+        CurrentView = _customersViewModel;
     }
 }

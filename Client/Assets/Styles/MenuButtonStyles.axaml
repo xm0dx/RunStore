@@ -1,0 +1,31 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Design.PreviewWith>
+        <Border Padding="20" Background="{DynamicResource PrimaryBackgroundGradient}">
+            <Button Classes="menu">
+                <StackPanel Orientation="Horizontal" Spacing="10">
+                    <Label Classes="icon" Content="&#xe2c2;" />
+                    <Label Content="Home" />
+                </StackPanel>
+            </Button>
+        </Border>
+    </Design.PreviewWith>
+
+    <Style Selector="Button.menu">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryTextColor}" />
+        <Setter Property="BorderBrush" Value="White" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="6" />
+        <Setter Property="Padding" Value="10" />
+        <Setter Property="Margin" Value="0,5" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+    </Style>
+
+    <Style Selector="Button.menu:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="{DynamicResource AccentColor}" />
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryBackgroundColor}" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+    </Style>
+</Styles>
