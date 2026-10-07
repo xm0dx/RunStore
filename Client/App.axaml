@@ -1,34 +1,30 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:vm="using:Client.ViewModels"
-             xmlns:views="using:Client.Views"
+             xmlns:local="using:Client"
              x:Class="Client.App"
              RequestedThemeVariant="Default">
     <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+
+    <!-- ViewLocator väljer rätt View för varje ViewModel (HomeViewModel -> HomeView) -->
     <Application.DataTemplates>
-        <DataTemplate DataType="vm:MainWindowViewModel">
-            <views:MainWindow />
-        </DataTemplate>
-        <DataTemplate DataType="vm:HomeViewModel">
-            <views:HomeView />
-        </DataTemplate>
-        <DataTemplate DataType="vm:ProductViewModel">
-            <views:ProductView />
-        </DataTemplate>
+        <local:ViewLocator />
     </Application.DataTemplates>
 
     <Application.Styles>
         <FluentTheme />
-        <StyleInclude Source="Assets/AppStyles.axaml" />
+        <StyleInclude Source="Assets/Styles/AppStyles.axaml" />
     </Application.Styles>
 
+    <!-- Färgerna för hela appen. Ändra här så följer alla sidor med. -->
     <Application.Resources>
-        <SolidColorBrush x:Key="PrimaryTextColor" Color="Orange" />
-        <SolidColorBrush x:Key="PrimaryBackgroundColor" Color="Black" />
-        <LinearGradientBrush x:Key="PrimaryGradient" StartPoint="0% 0%" EndPoint="100% 0%">
-            <GradientStop Offset="0" Color="#030664" />
-            <GradientStop Offset="1" Color="#35166E" />
+        <SolidColorBrush x:Key="PrimaryTextColor" Color="#F4EFE6" />
+        <SolidColorBrush x:Key="AccentColor" Color="#FF9F1C" />
+        <SolidColorBrush x:Key="PrimaryBackgroundColor" Color="#14151C" />
+        <LinearGradientBrush x:Key="PrimaryBackgroundGradient" StartPoint="0% 0%" EndPoint="100% 0%">
+            <GradientStop Offset="0" Color="#1B2140" />
+            <GradientStop Offset="1" Color="#3A2560" />
         </LinearGradientBrush>
+        <FontFamily x:Key="IconFont">avares://Client/Assets/Fonts#Phosphor</FontFamily>
     </Application.Resources>
 
 </Application>

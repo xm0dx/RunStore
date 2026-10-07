@@ -2,15 +2,17 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <Design.PreviewWith>
     <Border Padding="20">
-      <Button Content="Hello World" FontSize="16" />
+      <Button Content="Test knapp" FontSize="16" />
     </Border>
   </Design.PreviewWith>
 
+  <!-- Alla knappar i appen ser ut så här -->
   <Style Selector="Button">
     <Setter Property="Background" Value="{DynamicResource PrimaryBackgroundColor}" />
     <Setter Property="Foreground" Value="{DynamicResource PrimaryTextColor}" />
     <Setter Property="FontSize" Value="16" />
     <Setter Property="Padding" Value="10" />
-    <Setter Property="Margin" Value="5" />
+    <Setter Property="Margin" Value="0,5" />
+    <Setter Property="CornerRadius" Value="6" />
   </Style>
 </Styles>

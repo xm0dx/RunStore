@@ -3,35 +3,50 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="using:Client.ViewModels"
-        mc:Ignorable="d"
-        d:DesignWidth="800"
-        d:DesignHeight="450"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Client.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
-        Title="Client">
+        Title="RunStore">
 
     <Design.DataContext>
         <vm:MainWindowViewModel />
     </Design.DataContext>
 
+    <!-- Två kolumner: menyn till vänster (200 px) och sidan till höger (resten) -->
     <Grid ColumnDefinitions="200, *" Background="{DynamicResource PrimaryBackgroundColor}">
-        <Border Padding="10" Background="{DynamicResource PrimaryGradient}" BorderBrush="#020425" BorderThickness="1">
-            <Grid RowDefinitions="*, Auto">
-                <StackPanel Grid.Row="0">
-                    <TextBlock Text="RunStore" FontSize="24" FontWeight="Bold" Margin="0" Foreground="{DynamicResource PrimaryTextColor}" />
-                    <Button Content="Home" Command="{Binding GotoHomeCommand}" Margin="10" HorizontalAlignment="Stretch" />
-                    <Button Content="Products" Command="{Binding GotoProductsCommand}" Margin="10" HorizontalAlignment="Stretch" />
 
+        <!-- Menyn -->
+        <Border Padding="10" Background="{DynamicResource PrimaryBackgroundGradient}">
+            <Grid RowDefinitions="*, Auto">
+
+                <StackPanel Grid.Row="0">
+                    <!-- Logotyp och namn -->
+                    <StackPanel Orientation="Horizontal" Spacing="8" Margin="0,0,0,10">
+                        <Image Source="avares://Client/Assets/Images/runstore.png" Width="44" Height="44" />
+                        <TextBlock Text="RunStore" FontSize="24" FontWeight="Bold" VerticalAlignment="Center" Foreground="{DynamicResource AccentColor}" />
+                    </StackPanel>
+
+                    <!-- Ikonerna kommer från Phosphor-fonten i Assets/Fonts -->
+                    <Button Command="{Binding GoToHomeCommand}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left">
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <TextBlock Text="&#xe2c2;" FontFamily="{DynamicResource IconFont}" FontSize="20" VerticalAlignment="Center" />
+                            <TextBlock Text="Home" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Button>
+
+                    <Button Command="{Binding GoToProductsCommand}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left">
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <TextBlock Text="&#xe416;" FontFamily="{DynamicResource IconFont}" FontSize="20" VerticalAlignment="Center" />
+                            <TextBlock Text="Products" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Button>
                 </StackPanel>
 
-                <Button Grid.Row="1" Content="Settings" Margin="10" HorizontalAlignment="Stretch" />
-
-
+                <Button Grid.Row="1" Content="Settings" HorizontalAlignment="Stretch" />
             </Grid>
-
-
         </Border>
-        <UserControl Grid.Column="1" Content="{Binding CurrentView}" Padding="20" />
 
+        <!-- Här visas den sida som CurrentView pekar på -->
+        <UserControl Grid.Column="1" Content="{Binding CurrentView}" Padding="20" />
     </Grid>
 </Window>
