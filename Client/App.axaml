@@ -12,6 +12,7 @@
 
     <Application.Styles>
         <FluentTheme />
+        <!-- Stilar: allmänna i AppStyles, menyknapparna i MenuButtonStyles -->
         <StyleInclude Source="Assets/Styles/AppStyles.axaml" />
         <StyleInclude Source="Assets/Styles/MenuButtonStyles.axaml" />
     </Application.Styles>

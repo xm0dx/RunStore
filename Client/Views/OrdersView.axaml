@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Client.Views.OrdersView">
+    <!-- Visas när CurrentView är en OrdersViewModel -->
     <StackPanel Spacing="12">
         <TextBlock Text="Orders" FontSize="24" Foreground="{DynamicResource AccentColor}" />
         <TextBlock Text="No orders to display." Foreground="{DynamicResource PrimaryTextColor}" />

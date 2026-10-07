@@ -2,15 +2,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <Design.PreviewWith>
     <Border Padding="20" Background="{DynamicResource PrimaryBackgroundGradient}">
-      <Button>
-        <StackPanel Orientation="Horizontal" Spacing="10">
-          <Label Classes="icon" Content="&#xe2c2;" />
-          <Label Content="Test knapp" />
-        </StackPanel>
-      </Button>
+      <Label Classes="icon" Content="&#xe2c2;" Foreground="{DynamicResource PrimaryTextColor}" />
     </Border>
   </Design.PreviewWith>
 
+  <!--
+    Label med Classes="icon" visar en ikon från Phosphor-fonten i Assets/Fonts.
+    Hitta fler ikoner: namnet på phosphoricons.com, numret i Phosphor-paketets css (ph-house = e2c2).
+  -->
   <Style Selector="Label.icon">
     <Setter Property="FontFamily" Value="{DynamicResource IconFont}" />
     <Setter Property="FontSize" Value="20" />
