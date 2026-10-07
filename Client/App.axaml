@@ -24,6 +24,7 @@
             <GradientStop Offset="0" Color="#1B2140" />
             <GradientStop Offset="1" Color="#3A2560" />
         </LinearGradientBrush>
+        <FontFamily x:Key="MontserratFont">avares://Client/Assets/Fonts/Montserrat-Regular.ttf#Montserrat</FontFamily>
         <FontFamily x:Key="IconFont">avares://Client/Assets/Fonts#Phosphor</FontFamily>
     </Application.Resources>
 
