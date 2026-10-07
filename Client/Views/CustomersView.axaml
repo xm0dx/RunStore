@@ -4,7 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Client.Views.CustomersView">
+
     <!-- Visas när CurrentView är en CustomersViewModel -->
+
     <StackPanel Spacing="12">
         <TextBlock Text="Customers" FontSize="24" Foreground="{DynamicResource AccentColor}" />
         <TextBlock Text="No customers to display." Foreground="{DynamicResource PrimaryTextColor}" />
