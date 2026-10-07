@@ -13,41 +13,44 @@
         <vm:MainWindowViewModel />
     </Design.DataContext>
 
-    <!-- Två kolumner: menyn till vänster (200 px) och sidan till höger (resten) -->
+    <!-- Vänster: menyn (200 px). Höger: sidan som CurrentView pekar på. -->
     <Grid ColumnDefinitions="200, *" Background="{DynamicResource PrimaryBackgroundColor}">
 
-        <!-- Menyn -->
         <Border Padding="10" Background="{DynamicResource PrimaryBackgroundGradient}">
             <Grid RowDefinitions="*, Auto">
 
-                <StackPanel Grid.Row="0">
-                    <!-- Logotyp (svg-filen visas med paketet Svg.Controls.Skia.Avalonia) och namn -->
+                <StackPanel>
                     <StackPanel Orientation="Horizontal" Spacing="8" Margin="0,0,0,10">
                         <Svg Width="44" Path="/Assets/Images/runstore.svg" />
                         <Label Content="RunStore" FontSize="24" FontWeight="Bold" VerticalAlignment="Center" Foreground="{DynamicResource AccentColor}" />
                     </StackPanel>
 
-                    <!-- Ikonerna kommer från Phosphor-fonten i Assets/Fonts -->
-                    <Button Command="{Binding GoToHomeCommand}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left">
+                    <!-- Classes="icon" ger Label ikonfonten, se AppStyles.axaml -->
+                    <Button Command="{Binding GoToHomeCommand}">
                         <StackPanel Orientation="Horizontal" Spacing="10">
-                            <TextBlock Text="&#xe2c2;" FontFamily="{DynamicResource IconFont}" FontSize="20" VerticalAlignment="Center" />
-                            <Label Content="Home" VerticalAlignment="Center" />
+                            <Label Classes="icon" Content="&#xe2c2;" />
+                            <Label Content="Home" />
                         </StackPanel>
                     </Button>
 
-                    <Button Command="{Binding GoToProductsCommand}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left">
+                    <Button Command="{Binding GoToProductsCommand}">
                         <StackPanel Orientation="Horizontal" Spacing="10">
-                            <TextBlock Text="&#xe416;" FontFamily="{DynamicResource IconFont}" FontSize="20" VerticalAlignment="Center" />
-                            <Label Content="Products" VerticalAlignment="Center" />
+                            <Label Classes="icon" Content="&#xe416;" />
+                            <Label Content="Products" />
                         </StackPanel>
                     </Button>
                 </StackPanel>
 
-                <Button Grid.Row="1" Content="Settings" HorizontalAlignment="Stretch" />
+                <Button Grid.Row="1">
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <Label Classes="icon" Content="&#xe270;" />
+                        <Label Content="Settings" />
+                    </StackPanel>
+                </Button>
+
             </Grid>
         </Border>
 
-        <!-- Här visas den sida som CurrentView pekar på -->
         <UserControl Grid.Column="1" Content="{Binding CurrentView}" Padding="20" />
     </Grid>
 </Window>
