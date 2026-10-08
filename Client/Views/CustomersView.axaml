@@ -2,13 +2,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:Client.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="Client.Views.CustomersView">
+             x:Class="Client.Views.CustomersView"
+             x:DataType="vm:CustomersViewModel"
+             Background="{DynamicResource PrimaryBackgroundColor}">
 
     <!-- Visas när CurrentView är en CustomersViewModel -->
-
-    <StackPanel Spacing="12">
-        <TextBlock Text="Customers" FontSize="24" Foreground="{DynamicResource AccentColor}" />
-        <TextBlock Text="No customers to display." Foreground="{DynamicResource PrimaryTextColor}" />
+    <StackPanel Spacing="12" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <TextBlock Classes="h1" Text="{Binding PageTitle}" />
+        <TextBlock Text="No customers to display." Foreground="{DynamicResource PrimaryTextColor}" HorizontalAlignment="Center" />
     </StackPanel>
 </UserControl>

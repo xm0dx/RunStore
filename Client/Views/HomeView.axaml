@@ -4,5 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Client.Views.HomeView">
-  <TextBlock Text="Homepage RunStore!" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" Foreground="{DynamicResource AccentColor}" />
+  <StackPanel Spacing="12" HorizontalAlignment="Center" VerticalAlignment="Center">
+    <TextBlock Classes="h1" Text="Homepage RunStore!" />
+    <TextBlock Text="Welcome back to your store dashboard." Foreground="{DynamicResource PrimaryTextColor}" HorizontalAlignment="Center" />
+  </StackPanel>
 </UserControl>

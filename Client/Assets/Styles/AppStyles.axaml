@@ -2,16 +2,25 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <Design.PreviewWith>
     <Border Padding="20" Background="{DynamicResource PrimaryBackgroundGradient}">
-      <Label Classes="icon" Content="&#xe2c2;" Foreground="{DynamicResource PrimaryTextColor}" />
+      <StackPanel>
+        <Label Classes="icon" Content="&#xe2c2;" Foreground="{DynamicResource PrimaryTextColor}" />
+        <TextBlock Classes="h1" Text="TestText" Foreground="{DynamicResource PrimaryTextColor}"/>
+      </StackPanel>
     </Border>
   </Design.PreviewWith>
 
   <!--
-    Label med Classes="icon" visar en ikon från Phosphor-fonten i Assets/Fonts.
-    Hitta fler ikoner: namnet på phosphoricons.com, numret i Phosphor-paketets css (ph-house = e2c2).
+  Label med Classes="icon" visar en ikon från Phosphor-fonten i Assets/Fonts.
+  Hitta fler ikoner: namnet på phosphoricons.com, numret i Phosphor-paketets css (ph-house = e2c2).
   -->
   <Style Selector="Label.icon">
     <Setter Property="FontFamily" Value="{DynamicResource IconFont}" />
     <Setter Property="FontSize" Value="20" />
+  </Style>
+  <!-- Rubrik på varje sida: Classes="h1" -->
+  <Style Selector="TextBlock.h1">
+    <Setter Property="FontSize" Value="24" />
+    <Setter Property="TextAlignment" Value="Center" />
+    <Setter Property="Foreground" Value="{DynamicResource AccentColor}" />
   </Style>
 </Styles>

@@ -2,7 +2,44 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:Client.ViewModels"
+             xmlns:models="using:Client.Models"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="Client.Views.ProductView">
-  <TextBlock Text="Products in RunStore!" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" Foreground="{DynamicResource AccentColor}" />
+             x:Class="Client.Views.ProductView"
+             x:DataType="vm:ProductViewModel"
+             Foreground="{DynamicResource PrimaryTextColor}">
+
+  <Design.DataContext>
+    <vm:ProductViewModel />
+  </Design.DataContext>
+
+  <StackPanel Margin="20" Spacing="12">
+    <TextBlock Classes="h1" Text="{Binding PageTitle}" />
+
+    <!-- Rubrikraden. Kolumnerna måste vara samma som i raderna nedanför. -->
+    <Border BorderBrush="{DynamicResource AccentColor}" BorderThickness="0 0 0 2">
+      <Grid ColumnDefinitions="200,100,100,*,150">
+        <Label Grid.Column="0" Content="Name" />
+        <Label Grid.Column="1" Content="ItemNumber" />
+        <Label Grid.Column="2" Content="Price" />
+        <Label Grid.Column="3" Content="Description" />
+        <Label Grid.Column="4" Content="SupplierName" />
+      </Grid>
+    </Border>
+
+    <!-- En rad per produkt i Products. x:DataType säger att varje rad är en Product. -->
+    <ItemsControl ItemsSource="{Binding Products}">
+      <ItemsControl.ItemTemplate>
+        <DataTemplate x:DataType="models:Product">
+          <Grid ColumnDefinitions="200,100,100,*,150">
+            <Label Grid.Column="0" Content="{Binding Name}" />
+            <Label Grid.Column="1" Content="{Binding ItemNumber}" />
+            <Label Grid.Column="2" Content="{Binding Price}" />
+            <Label Grid.Column="3" Content="{Binding Description}" />
+            <Label Grid.Column="4" Content="{Binding SupplierName}" />
+          </Grid>
+        </DataTemplate>
+      </ItemsControl.ItemTemplate>
+    </ItemsControl>
+  </StackPanel>
 </UserControl>
