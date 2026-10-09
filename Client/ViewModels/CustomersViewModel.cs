@@ -10,7 +10,7 @@ public partial class CustomersViewModel : ViewModelBase
     // listan som CustomersView visar. ObservableCollection säger till sidan
     // när något läggs till eller tas bort.
     [ObservableProperty]
-    public partial ObservableCollection<Customer> Customers { get; set; }
+    private ObservableCollection<Customer> _customers;
 
     public CustomersViewModel()
     {
