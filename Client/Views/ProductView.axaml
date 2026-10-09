@@ -17,7 +17,7 @@
 
     <!-- rubrikrad, samma kolumner som raderna -->
     <Border BorderBrush="{DynamicResource AccentColor}" BorderThickness="0 0 0 2">
-      <Grid ColumnDefinitions="200,100,100,*,150">
+      <Grid ColumnDefinitions="200,100,100,*,150,40,40">
         <Label Grid.Column="0" Content="Name" />
         <Label Grid.Column="1" Content="ItemNumber" />
         <Label Grid.Column="2" Content="Price" />
@@ -30,12 +30,29 @@
     <ItemsControl ItemsSource="{Binding Products}">
       <ItemsControl.ItemTemplate>
         <DataTemplate x:DataType="models:Product">
-          <Grid ColumnDefinitions="200,100,100,*,150">
+          <Grid ColumnDefinitions="200,100,100,*,150,40,40">
             <Label Grid.Column="0" Content="{Binding Name}" />
             <Label Grid.Column="1" Content="{Binding ItemNumber}" />
             <Label Grid.Column="2" Content="{Binding Price}" />
-            <Label Grid.Column="3" Content="{Binding Description}" />
+            <TextBlock Grid.Column="3"
+                       Text="{Binding Description}"
+                       TextWrapping="Wrap"
+                       MaxLines="3"
+                       TextTrimming="CharacterEllipsis" />
             <Label Grid.Column="4" Content="{Binding SupplierName}" />
+
+            <!-- raden är en Product, så commands hämtas från sidans ViewModel via $parent.
+                 CommandParameter skickar med produkten på raden. -->
+            <Button Grid.Column="5"
+                    Command="{Binding $parent[ItemsControl].((vm:ProductViewModel)DataContext).EditCommand}"
+                    CommandParameter="{Binding}"
+                    FontFamily="{DynamicResource IconFont}" Content="&#xebc6;"
+                    Foreground="Green" Background="Transparent" BorderThickness="0" Padding="6" />
+            <Button Grid.Column="6"
+                    Command="{Binding $parent[ItemsControl].((vm:ProductViewModel)DataContext).DeleteCommand}"
+                    CommandParameter="{Binding}"
+                    FontFamily="{DynamicResource IconFont}" Content="&#xe4a6;"
+                    Foreground="#E5533D" Background="Transparent" BorderThickness="0" Padding="6" />
           </Grid>
         </DataTemplate>
       </ItemsControl.ItemTemplate>
