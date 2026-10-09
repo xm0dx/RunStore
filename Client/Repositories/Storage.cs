@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
-using Client.Interfaces;
+using Client.Interface;
 
 namespace Client.Repositories;
 
 // läser och skriver en lista av T till en json-fil
-public class Storage<T> : IStorage<T> where T : class
+public class Storage<T> : Istorage<T> where T : class
 {
     public List<T> Read(string path)
     {
