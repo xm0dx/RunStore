@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "firstName": "Elin",
+    "lastName": "Sandberg",
+    "email": "elin.sandberg@mail.com",
+    "phone": "070-123 45 67",
+    "addressLine": "Storgatan 12",
+    "postalCode": "411 24",
+    "city": "Göteborg"
+  },
+  {
+    "id": 2,
+    "firstName": "Oskar",
+    "lastName": "Lindqvist",
+    "email": "oskar.lindqvist@mail.com",
+    "phone": "073-987 65 43",
+    "addressLine": "Kungsgatan 5",
+    "postalCode": "111 43",
+    "city": "Stockholm"
+  },
+  {
+    "id": 3,
+    "firstName": "Maja",
+    "lastName": "Holm",
+    "email": "maja.holm@mail.com",
+    "phone": "076-555 12 34",
+    "addressLine": "Ängsvägen 3",
+    "postalCode": "215 32",
+    "city": "Malmö"
+  },
+  {
+    "id": 4,
+    "firstName": "Viktor",
+    "lastName": "Nyström",
+    "email": "viktor.nystrom@mail.com",
+    "phone": "072-444 98 76",
+    "addressLine": "Hamngatan 8",
+    "postalCode": "753 20",
+    "city": "Uppsala"
+  },
+  {
+    "id": 5,
+    "firstName": "Sara",
+    "lastName": "Ekström",
+    "email": "sara.ekstrom@mail.com",
+    "phone": "070-222 33 44",
+    "addressLine": "Björkallén 21",
+    "postalCode": "582 25",
+    "city": "Linköping"
+  }
+]

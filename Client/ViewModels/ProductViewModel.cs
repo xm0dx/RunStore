@@ -22,6 +22,7 @@ public partial class ProductViewModel : ViewModelBase
     {
         try
         {
+            // hämtar alla produkter från databasen
             Products = new ObservableCollection<Product>(ProductService.ListAllProducts());
         }
         catch (Exception ex)

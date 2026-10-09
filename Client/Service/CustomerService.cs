@@ -1,17 +1,24 @@
+using System;
 using System.Collections.Generic;
+using System.IO;
 using Client.Models;
+using Client.Repositories;
 
 namespace Client.Service;
 
-// kunderna är påhittade än så länge
+// hämtar och sparar kunderna i Data/Customer.json
 public class CustomerService
 {
+    private static readonly string CustomerFilePath = Path.Combine(AppContext.BaseDirectory, "Data", "Customer.json");
+    private static readonly Storage<Customer> CustomerStorage = new();
+
     public static List<Customer> ListAllCustomers()
     {
-        return new List<Customer>
-        {
-            new Customer { Id = 1, FirstName = "Anna", LastName = "Berg", Email = "anna.berg@mail.com", City = "Göteborg" },
-            new Customer { Id = 2, FirstName = "Johan", LastName = "Lind", Email = "johan.lind@mail.com", City = "Borås" },
-        };
+        return CustomerStorage.Read(CustomerFilePath);
+    }
+
+    public static void SaveCustomers(List<Customer> customers)
+    {
+        CustomerStorage.Write(CustomerFilePath, customers);
     }
 }
