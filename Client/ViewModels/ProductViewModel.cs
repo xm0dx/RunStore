@@ -3,7 +3,6 @@ using System.Collections.ObjectModel;
 using Client.Models;
 using Client.Service;
 using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
 
 namespace Client.ViewModels;
 
@@ -11,24 +10,24 @@ public partial class ProductViewModel : ViewModelBase
 {
     // listan som ProductView visar
     [ObservableProperty]
-    private ObservableCollection<Product> _products;
+    private ObservableCollection<Product> _products = new();
 
     public ProductViewModel()
     {
         PageTitle = "Products in RunStore!";
-        Products = new ObservableCollection<Product>(ProductService.ListAllProducts());
+        LoadProducts();
     }
 
-    // knapparna på raden skickar med sin produkt
-    [RelayCommand]
-    private void Edit(Product product)
+    private void LoadProducts()
     {
-        Console.WriteLine($"Ändra produkt {product.Name}");
-    }
-
-    [RelayCommand]
-    private void Delete(Product product)
-    {
-        Console.WriteLine($"Radera produkt {product.Name}");
+        try
+        {
+            Products = new ObservableCollection<Product>(ProductService.ListAllProducts());
+        }
+        catch (Exception ex)
+        {
+            // byts ut mot en riktig felruta senare
+            Console.WriteLine(ex.Message);
+        }
     }
 }

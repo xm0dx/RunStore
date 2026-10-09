@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
+using System.Text.Encodings.Web;
 using System.Text.Json;
 using Client.Interface;
 
@@ -8,6 +9,15 @@ namespace Client.Repositories;
 // läser och skriver en lista av T till en json-fil
 public class Storage<T> : Istorage<T> where T : class
 {
+    // samma inställningar för läsning och skrivning
+    private readonly JsonSerializerOptions _options = new()
+    {
+        PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+        PropertyNameCaseInsensitive = true,
+        WriteIndented = true,
+        Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+    };
+
     public List<T> Read(string path)
     {
         // finns ingen fil än får vi en tom lista
@@ -17,8 +27,7 @@ public class Storage<T> : Istorage<T> where T : class
         }
 
         var json = File.ReadAllText(path);
-        var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
-        var items = JsonSerializer.Deserialize<List<T>>(json, options);
+        var items = JsonSerializer.Deserialize<List<T>>(json, _options);
 
         return items ?? new List<T>();
     }
@@ -31,12 +40,7 @@ public class Storage<T> : Istorage<T> where T : class
             Directory.CreateDirectory(directory);
         }
 
-        var options = new JsonSerializerOptions
-        {
-            WriteIndented = true,
-            PropertyNamingPolicy = JsonNamingPolicy.CamelCase
-        };
-        var json = JsonSerializer.Serialize(data, options);
+        var json = JsonSerializer.Serialize(data, _options);
         File.WriteAllText(path, json);
     }
 }

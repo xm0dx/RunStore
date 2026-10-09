@@ -38,16 +38,9 @@
               <Label Grid.Column="2" Content="{Binding Price}" />
               <Label Grid.Column="3" Content="{Binding SupplierName}" />
 
-              <!-- raden känner bara sin produkt, så knappen hämtar commandet från sidans ViewModel
-                   via $parent[ItemsControl] och skickar med produkten som parameter -->
-              <Button Grid.Column="4"
-                      Command="{Binding $parent[ItemsControl].((vm:ProductViewModel)DataContext).EditCommand}"
-                      CommandParameter="{Binding}"
-                      Classes="rowIcon" Content="&#xebc6;" Foreground="Green" />
-              <Button Grid.Column="5"
-                      Command="{Binding $parent[ItemsControl].((vm:ProductViewModel)DataContext).DeleteCommand}"
-                      CommandParameter="{Binding}"
-                      Classes="rowIcon" Content="&#xe4a6;" Foreground="#E5533D" />
+              <!-- knapparna kör Edit och Delete på radens produkt -->
+              <Button Grid.Column="4" Command="{Binding Edit}" Classes="rowIcon" Content="&#xebc6;" Foreground="Green" />
+              <Button Grid.Column="5" Command="{Binding Delete}" Classes="rowIcon" Content="&#xe4a6;" Foreground="#E5533D" />
 
               <!-- beskrivningen är bortkommenterad, texten är för lång för tabellen.
                    Vill du ha den tillbaka: lägg till en kolumn * sist i båda griddarna och ta bort kommentaren.

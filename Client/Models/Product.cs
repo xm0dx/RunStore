@@ -1,3 +1,5 @@
+using System;
+
 namespace Client.Models;
 
 // en produkt i butiken, samma fält som i Data/Product.json
@@ -10,4 +12,15 @@ public class Product
     public int Price { get; set; }
     public string? Description { get; set; }
     public string? ImageUrl { get; set; }
+
+    // knapparna på raden i ProductView kör de här
+    public void Edit()
+    {
+        Console.WriteLine($"Ändra produkt {Name}");
+    }
+
+    public void Delete()
+    {
+        Console.WriteLine($"Radera produkt {Name}");
+    }
 }
