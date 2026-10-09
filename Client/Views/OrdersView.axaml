@@ -7,6 +7,6 @@
     <!-- Visas när CurrentView är en OrdersViewModel -->
     <StackPanel Spacing="12" HorizontalAlignment="Center" VerticalAlignment="Center">
         <TextBlock Classes="h1" Text="Orders" />
-        <TextBlock Text="No orders to display." Foreground="{DynamicResource PrimaryTextColor}" HorizontalAlignment="Center" />
+        <TextBlock Text="No orders to display." HorizontalAlignment="Center" />
     </StackPanel>
 </UserControl>

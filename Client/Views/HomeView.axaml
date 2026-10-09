@@ -6,6 +6,6 @@
              x:Class="Client.Views.HomeView">
   <StackPanel Spacing="12" HorizontalAlignment="Center" VerticalAlignment="Center">
     <TextBlock Classes="h1" Text="Homepage RunStore!" />
-    <TextBlock Text="Welcome back to your store dashboard." Foreground="{DynamicResource PrimaryTextColor}" HorizontalAlignment="Center" />
+    <TextBlock Text="Welcome back to your store dashboard." HorizontalAlignment="Center" />
   </StackPanel>
 </UserControl>

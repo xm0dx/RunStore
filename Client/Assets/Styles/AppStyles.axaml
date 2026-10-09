@@ -4,10 +4,18 @@
     <Border Padding="20" Background="{DynamicResource PrimaryBackgroundGradient}">
       <StackPanel>
         <Label Classes="icon" Content="&#xe2c2;" Foreground="{DynamicResource PrimaryTextColor}" />
-        <TextBlock Classes="h1" Text="TestText" Foreground="{DynamicResource PrimaryTextColor}"/>
+        <TextBlock Classes="h1" Text="TestText" />
       </StackPanel>
     </Border>
   </Design.PreviewWith>
+
+  <!-- Gäller hela fönstret. Alla kontroller ärver typsnitt och textfärg härifrån,
+       så ingen sida behöver sätta Foreground själv. -->
+  <Style Selector="Window">
+    <Setter Property="FontFamily" Value="{DynamicResource MontserratFont}" />
+    <Setter Property="Foreground" Value="{DynamicResource PrimaryTextColor}" />
+    <Setter Property="Background" Value="{DynamicResource PrimaryBackgroundColor}" />
+  </Style>
 
   <!--
   Label med Classes="icon" visar en ikon från Phosphor-fonten i Assets/Fonts.
@@ -17,6 +25,7 @@
     <Setter Property="FontFamily" Value="{DynamicResource IconFont}" />
     <Setter Property="FontSize" Value="20" />
   </Style>
+
   <!-- Rubrik på varje sida: Classes="h1" -->
   <Style Selector="TextBlock.h1">
     <Setter Property="FontSize" Value="24" />

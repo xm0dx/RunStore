@@ -3,14 +3,42 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:Client.ViewModels"
+             xmlns:models="using:Client.Models"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Client.Views.CustomersView"
-             x:DataType="vm:CustomersViewModel"
-             Background="{DynamicResource PrimaryBackgroundColor}">
+             x:DataType="vm:CustomersViewModel">
 
-    <!-- Visas när CurrentView är en CustomersViewModel -->
-    <StackPanel Spacing="12" HorizontalAlignment="Center" VerticalAlignment="Center">
-        <TextBlock Classes="h1" Text="{Binding PageTitle}" />
-        <TextBlock Text="No customers to display." Foreground="{DynamicResource PrimaryTextColor}" HorizontalAlignment="Center" />
-    </StackPanel>
+  <Design.DataContext>
+    <vm:CustomersViewModel />
+  </Design.DataContext>
+
+  <StackPanel Margin="20" Spacing="12">
+    <TextBlock Classes="h1" Text="{Binding PageTitle}" />
+
+    <!-- Rubrikraden. Kolumnerna måste vara samma som i raderna nedanför. -->
+    <Border BorderBrush="{DynamicResource AccentColor}" BorderThickness="0 0 0 2">
+      <Grid ColumnDefinitions="60,150,150,*,120">
+        <Label Grid.Column="0" Content="Id" />
+        <Label Grid.Column="1" Content="First name" />
+        <Label Grid.Column="2" Content="Last name" />
+        <Label Grid.Column="3" Content="Email" />
+        <Label Grid.Column="4" Content="City" />
+      </Grid>
+    </Border>
+
+    <!-- En rad per kund i Customers. x:DataType säger att varje rad är en Customer. -->
+    <ItemsControl ItemsSource="{Binding Customers}">
+      <ItemsControl.ItemTemplate>
+        <DataTemplate x:DataType="models:Customer">
+          <Grid ColumnDefinitions="60,150,150,*,120">
+            <Label Grid.Column="0" Content="{Binding Id}" />
+            <Label Grid.Column="1" Content="{Binding FirstName}" />
+            <Label Grid.Column="2" Content="{Binding LastName}" />
+            <Label Grid.Column="3" Content="{Binding Email}" />
+            <Label Grid.Column="4" Content="{Binding City}" />
+          </Grid>
+        </DataTemplate>
+      </ItemsControl.ItemTemplate>
+    </ItemsControl>
+  </StackPanel>
 </UserControl>

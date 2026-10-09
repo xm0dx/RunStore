@@ -6,8 +6,7 @@
              xmlns:models="using:Client.Models"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Client.Views.ProductView"
-             x:DataType="vm:ProductViewModel"
-             Foreground="{DynamicResource PrimaryTextColor}">
+             x:DataType="vm:ProductViewModel">
 
   <Design.DataContext>
     <vm:ProductViewModel />

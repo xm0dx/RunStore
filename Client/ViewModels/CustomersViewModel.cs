@@ -1,11 +1,20 @@
+using System.Collections.ObjectModel;
+using Client.Models;
+using Client.Service;
+using CommunityToolkit.Mvvm.ComponentModel;
+
 namespace Client.ViewModels;
 
-// Sidan för kunder. Tom just nu, listan med kunder kommer senare.
-// Namnet måste sluta på ViewModel så att ViewLocator hittar CustomersView.
 public partial class CustomersViewModel : ViewModelBase
 {
+    // listan som CustomersView visar. ObservableCollection säger till sidan
+    // när något läggs till eller tas bort.
+    [ObservableProperty]
+    public partial ObservableCollection<Customer> Customers { get; set; }
+
     public CustomersViewModel()
     {
         PageTitle = "Kund Lista";
+        Customers = new ObservableCollection<Customer>(CustomerService.ListAllCustomers());
     }
 }
