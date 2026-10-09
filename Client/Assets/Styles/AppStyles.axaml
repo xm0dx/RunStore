@@ -28,4 +28,12 @@
     <Setter Property="TextAlignment" Value="Center" />
     <Setter Property="Foreground" Value="{DynamicResource AccentColor}" />
   </Style>
+
+  <!-- små ikonknappar på raderna i listorna, Classes="rowIcon" -->
+  <Style Selector="Button.rowIcon">
+    <Setter Property="FontFamily" Value="{DynamicResource IconFont}" />
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderThickness" Value="0" />
+    <Setter Property="Padding" Value="6" />
+  </Style>
 </Styles>

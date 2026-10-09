@@ -13,47 +13,54 @@
   </Design.DataContext>
 
   <!-- sista raden (*) tar resten av höjden så listan kan scrolla -->
-  <Grid Margin="20" RowDefinitions="Auto,Auto,Auto,*">
-    <TextBlock Grid.Row="0" Classes="h1" Text="{Binding PageTitle}" />
+  <Grid Margin="20" RowDefinitions="Auto,Auto,*">
+    <TextBlock Grid.Row="0" Classes="h1" Text="{Binding PageTitle}" Margin="0 0 0 12" />
 
-    <!-- knapparna i en egen grid, de jobbar på den markerade raden -->
-    <Grid Grid.Row="1" ColumnDefinitions="Auto,Auto" Margin="0 12">
-      <Button Grid.Column="0" Command="{Binding EditCommand}" FontFamily="{DynamicResource IconFont}" Content="&#xebc6;" Foreground="Green" Margin="0 0 10 0" />
-      <Button Grid.Column="1" Command="{Binding DeleteCommand}" FontFamily="{DynamicResource IconFont}" Content="&#xe4a6;" Foreground="#E5533D" />
-    </Grid>
-
-    <!-- rubrikrad, samma kolumner som raderna -->
-    <Border Grid.Row="2" BorderBrush="{DynamicResource AccentColor}" BorderThickness="0 0 0 2" Padding="12 0">
-      <Grid ColumnDefinitions="200,100,100,150">
+    <!-- rubrikrad, samma kolumner som raderna. De två sista kolumnerna är knapparna. -->
+    <Border Grid.Row="1" BorderBrush="{DynamicResource AccentColor}" BorderThickness="0 0 0 2">
+      <Grid ColumnDefinitions="200,100,100,150,40,40">
         <Label Grid.Column="0" Content="Name" />
         <Label Grid.Column="1" Content="ItemNumber" />
         <Label Grid.Column="2" Content="Price" />
         <Label Grid.Column="3" Content="SupplierName" />
-        <!-- <Label Grid.Column="4" Content="Description" /> -->
+        <!-- <Label Grid.Column="6" Content="Description" /> -->
       </Grid>
     </Border>
 
-    <!-- en rad per produkt, klicka på en rad för att markera den -->
-    <ListBox Grid.Row="3" ItemsSource="{Binding Products}" SelectedItem="{Binding SelectedProduct}" Background="Transparent">
-      <ListBox.ItemTemplate>
-        <DataTemplate x:DataType="models:Product">
-          <Grid ColumnDefinitions="200,100,100,150">
-            <Label Grid.Column="0" Content="{Binding Name}" />
-            <Label Grid.Column="1" Content="{Binding ItemNumber}" />
-            <Label Grid.Column="2" Content="{Binding Price}" />
-            <Label Grid.Column="3" Content="{Binding SupplierName}" />
+    <!-- en rad per produkt -->
+    <ScrollViewer Grid.Row="2">
+      <ItemsControl ItemsSource="{Binding Products}">
+        <ItemsControl.ItemTemplate>
+          <DataTemplate x:DataType="models:Product">
+            <Grid ColumnDefinitions="200,100,100,150,40,40">
+              <Label Grid.Column="0" Content="{Binding Name}" />
+              <Label Grid.Column="1" Content="{Binding ItemNumber}" />
+              <Label Grid.Column="2" Content="{Binding Price}" />
+              <Label Grid.Column="3" Content="{Binding SupplierName}" />
 
-            <!-- beskrivningen är bortkommenterad, texten är för lång för tabellen.
-                 Vill du ha den tillbaka: lägg till en kolumn * sist i båda griddarna och ta bort kommentaren.
-            <TextBlock Grid.Column="4"
-                       Text="{Binding Description}"
-                       TextWrapping="Wrap"
-                       MaxLines="3"
-                       TextTrimming="CharacterEllipsis" />
-            -->
-          </Grid>
-        </DataTemplate>
-      </ListBox.ItemTemplate>
-    </ListBox>
+              <!-- raden känner bara sin produkt, så knappen hämtar commandet från sidans ViewModel
+                   via $parent[ItemsControl] och skickar med produkten som parameter -->
+              <Button Grid.Column="4"
+                      Command="{Binding $parent[ItemsControl].((vm:ProductViewModel)DataContext).EditCommand}"
+                      CommandParameter="{Binding}"
+                      Classes="rowIcon" Content="&#xebc6;" Foreground="Green" />
+              <Button Grid.Column="5"
+                      Command="{Binding $parent[ItemsControl].((vm:ProductViewModel)DataContext).DeleteCommand}"
+                      CommandParameter="{Binding}"
+                      Classes="rowIcon" Content="&#xe4a6;" Foreground="#E5533D" />
+
+              <!-- beskrivningen är bortkommenterad, texten är för lång för tabellen.
+                   Vill du ha den tillbaka: lägg till en kolumn * sist i båda griddarna och ta bort kommentaren.
+              <TextBlock Grid.Column="6"
+                         Text="{Binding Description}"
+                         TextWrapping="Wrap"
+                         MaxLines="3"
+                         TextTrimming="CharacterEllipsis" />
+              -->
+            </Grid>
+          </DataTemplate>
+        </ItemsControl.ItemTemplate>
+      </ItemsControl>
+    </ScrollViewer>
   </Grid>
 </UserControl>

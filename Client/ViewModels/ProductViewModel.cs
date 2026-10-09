@@ -13,29 +13,22 @@ public partial class ProductViewModel : ViewModelBase
     [ObservableProperty]
     private ObservableCollection<Product> _products;
 
-    // raden som är markerad i listan, null om ingen är markerad
-    [ObservableProperty]
-    private Product? _selectedProduct;
-
     public ProductViewModel()
     {
         PageTitle = "Products in RunStore!";
         Products = new ObservableCollection<Product>(ProductService.ListAllProducts());
     }
 
+    // knapparna på raden skickar med sin produkt
     [RelayCommand]
-    private void Edit()
+    private void Edit(Product product)
     {
-        if (SelectedProduct is null) return;
-
-        Console.WriteLine($"Ändra produkt {SelectedProduct.Name}");
+        Console.WriteLine($"Ändra produkt {product.Name}");
     }
 
     [RelayCommand]
-    private void Delete()
+    private void Delete(Product product)
     {
-        if (SelectedProduct is null) return;
-
-        Console.WriteLine($"Radera produkt {SelectedProduct.Name}");
+        Console.WriteLine($"Radera produkt {product.Name}");
     }
 }
