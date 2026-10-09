@@ -12,12 +12,19 @@
     <vm:ProductViewModel />
   </Design.DataContext>
 
-  <StackPanel Margin="20" Spacing="12">
-    <TextBlock Classes="h1" Text="{Binding PageTitle}" />
+  <!-- sista raden (*) tar resten av höjden så listan kan scrolla -->
+  <Grid Margin="20" RowDefinitions="Auto,Auto,Auto,*">
+    <TextBlock Grid.Row="0" Classes="h1" Text="{Binding PageTitle}" />
+
+    <!-- knapparna jobbar på den markerade raden -->
+    <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="10" Margin="0 12">
+      <Button Command="{Binding EditCommand}" FontFamily="{DynamicResource IconFont}" Content="&#xebc6;" Foreground="Green" />
+      <Button Command="{Binding DeleteCommand}" FontFamily="{DynamicResource IconFont}" Content="&#xe4a6;" Foreground="#E5533D" />
+    </StackPanel>
 
     <!-- rubrikrad, samma kolumner som raderna -->
-    <Border BorderBrush="{DynamicResource AccentColor}" BorderThickness="0 0 0 2">
-      <Grid ColumnDefinitions="200,100,100,*,150,40,40">
+    <Border Grid.Row="2" BorderBrush="{DynamicResource AccentColor}" BorderThickness="0 0 0 2" Padding="12 0">
+      <Grid ColumnDefinitions="200,100,100,*,150">
         <Label Grid.Column="0" Content="Name" />
         <Label Grid.Column="1" Content="ItemNumber" />
         <Label Grid.Column="2" Content="Price" />
@@ -26,11 +33,11 @@
       </Grid>
     </Border>
 
-    <!-- en rad per produkt -->
-    <ItemsControl ItemsSource="{Binding Products}">
-      <ItemsControl.ItemTemplate>
+    <!-- en rad per produkt, klicka på en rad för att markera den -->
+    <ListBox Grid.Row="3" ItemsSource="{Binding Products}" SelectedItem="{Binding SelectedProduct}" Background="Transparent">
+      <ListBox.ItemTemplate>
         <DataTemplate x:DataType="models:Product">
-          <Grid ColumnDefinitions="200,100,100,*,150,40,40">
+          <Grid ColumnDefinitions="200,100,100,*,150">
             <Label Grid.Column="0" Content="{Binding Name}" />
             <Label Grid.Column="1" Content="{Binding ItemNumber}" />
             <Label Grid.Column="2" Content="{Binding Price}" />
@@ -40,22 +47,9 @@
                        MaxLines="3"
                        TextTrimming="CharacterEllipsis" />
             <Label Grid.Column="4" Content="{Binding SupplierName}" />
-
-            <!-- raden är en Product, så commands hämtas från sidans ViewModel via $parent.
-                 CommandParameter skickar med produkten på raden. -->
-            <Button Grid.Column="5"
-                    Command="{Binding $parent[ItemsControl].((vm:ProductViewModel)DataContext).EditCommand}"
-                    CommandParameter="{Binding}"
-                    FontFamily="{DynamicResource IconFont}" Content="&#xebc6;"
-                    Foreground="Green" Background="Transparent" BorderThickness="0" Padding="6" />
-            <Button Grid.Column="6"
-                    Command="{Binding $parent[ItemsControl].((vm:ProductViewModel)DataContext).DeleteCommand}"
-                    CommandParameter="{Binding}"
-                    FontFamily="{DynamicResource IconFont}" Content="&#xe4a6;"
-                    Foreground="#E5533D" Background="Transparent" BorderThickness="0" Padding="6" />
           </Grid>
         </DataTemplate>
-      </ItemsControl.ItemTemplate>
-    </ItemsControl>
-  </StackPanel>
+      </ListBox.ItemTemplate>
+    </ListBox>
+  </Grid>
 </UserControl>
