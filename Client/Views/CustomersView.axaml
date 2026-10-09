@@ -12,12 +12,13 @@
     <vm:CustomersViewModel />
   </Design.DataContext>
 
-  <StackPanel Margin="20" Spacing="12">
-    <TextBlock Classes="h1" Text="{Binding PageTitle}" />
+  <!-- sista raden (*) tar resten av höjden så listan kan scrolla -->
+  <Grid Margin="20" RowDefinitions="Auto,Auto,*">
+    <TextBlock Grid.Row="0" Classes="h1" Text="{Binding PageTitle}" Margin="0 0 0 12" />
 
-    <!-- rubrikrad, samma kolumner som raderna -->
-    <Border BorderBrush="{DynamicResource AccentColor}" BorderThickness="0 0 0 2">
-      <Grid ColumnDefinitions="60,150,150,*,120">
+    <!-- rubrikrad, samma kolumner som raderna. De två sista kolumnerna är knapparna. -->
+    <Border Grid.Row="1" BorderBrush="{DynamicResource AccentColor}" BorderThickness="0 0 0 2">
+      <Grid ColumnDefinitions="60,150,150,*,120,40,40">
         <Label Grid.Column="0" Content="Id" />
         <Label Grid.Column="1" Content="First name" />
         <Label Grid.Column="2" Content="Last name" />
@@ -27,18 +28,24 @@
     </Border>
 
     <!-- en rad per kund -->
-    <ItemsControl ItemsSource="{Binding Customers}">
-      <ItemsControl.ItemTemplate>
-        <DataTemplate x:DataType="models:Customer">
-          <Grid ColumnDefinitions="60,150,150,*,120">
-            <Label Grid.Column="0" Content="{Binding Id}" />
-            <Label Grid.Column="1" Content="{Binding FirstName}" />
-            <Label Grid.Column="2" Content="{Binding LastName}" />
-            <Label Grid.Column="3" Content="{Binding Email}" />
-            <Label Grid.Column="4" Content="{Binding City}" />
-          </Grid>
-        </DataTemplate>
-      </ItemsControl.ItemTemplate>
-    </ItemsControl>
-  </StackPanel>
+    <ScrollViewer Grid.Row="2">
+      <ItemsControl ItemsSource="{Binding Customers}">
+        <ItemsControl.ItemTemplate>
+          <DataTemplate x:DataType="models:Customer">
+            <Grid ColumnDefinitions="60,150,150,*,120,40,40">
+              <Label Grid.Column="0" Content="{Binding Id}" />
+              <Label Grid.Column="1" Content="{Binding FirstName}" />
+              <Label Grid.Column="2" Content="{Binding LastName}" />
+              <Label Grid.Column="3" Content="{Binding Email}" />
+              <Label Grid.Column="4" Content="{Binding City}" />
+
+              <!-- knapparna kör Edit och Delete på radens kund -->
+              <Button Grid.Column="5" Command="{Binding Edit}" Classes="rowIcon" Content="&#xebc6;" Foreground="Green" />
+              <Button Grid.Column="6" Command="{Binding Delete}" Classes="rowIcon" Content="&#xe4a6;" Foreground="#E5533D" />
+            </Grid>
+          </DataTemplate>
+        </ItemsControl.ItemTemplate>
+      </ItemsControl>
+    </ScrollViewer>
+  </Grid>
 </UserControl>
