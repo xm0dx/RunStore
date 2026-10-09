@@ -7,10 +7,9 @@ namespace Client.ViewModels;
 
 public partial class ProductViewModel : ViewModelBase
 {
-    // listan som ProductView visar. ObservableCollection säger till sidan
-    // när något läggs till eller tas bort.
+    // listan som ProductView visar
     [ObservableProperty]
-    public partial ObservableCollection<Product> Products { get; set; }
+    private ObservableCollection<Product> _products;
 
     public ProductViewModel()
     {

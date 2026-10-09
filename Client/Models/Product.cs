@@ -1,8 +1,6 @@
-using System.Text.Json.Serialization;
-
 namespace Client.Models;
 
-// En produkt i butiken. required = måste få ett värde när objektet skapas.
+// en produkt i butiken, samma fält som i Data/Product.json
 public class Product
 {
     public required string Id { get; set; }
@@ -11,7 +9,5 @@ public class Product
     public required string SupplierName { get; set; }
     public int Price { get; set; }
     public string? Description { get; set; }
-
-    [JsonPropertyName("imageUrl")]
-    public string? Image { get; set; }
+    public string? ImageUrl { get; set; }
 }

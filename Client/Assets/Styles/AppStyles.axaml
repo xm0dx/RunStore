@@ -9,24 +9,20 @@
     </Border>
   </Design.PreviewWith>
 
-  <!-- Gäller hela fönstret. Alla kontroller ärver typsnitt och textfärg härifrån,
-       så ingen sida behöver sätta Foreground själv. -->
+  <!-- typsnitt och färger för hela fönstret, allt annat ärver -->
   <Style Selector="Window">
     <Setter Property="FontFamily" Value="{DynamicResource MontserratFont}" />
     <Setter Property="Foreground" Value="{DynamicResource PrimaryTextColor}" />
     <Setter Property="Background" Value="{DynamicResource PrimaryBackgroundColor}" />
   </Style>
 
-  <!--
-  Label med Classes="icon" visar en ikon från Phosphor-fonten i Assets/Fonts.
-  Hitta fler ikoner: namnet på phosphoricons.com, numret i Phosphor-paketets css (ph-house = e2c2).
-  -->
+  <!-- ikoner från Phosphor-fonten, Classes="icon" -->
   <Style Selector="Label.icon">
     <Setter Property="FontFamily" Value="{DynamicResource IconFont}" />
     <Setter Property="FontSize" Value="20" />
   </Style>
 
-  <!-- Rubrik på varje sida: Classes="h1" -->
+  <!-- sidrubrik, Classes="h1" -->
   <Style Selector="TextBlock.h1">
     <Setter Property="FontSize" Value="24" />
     <Setter Property="TextAlignment" Value="Center" />

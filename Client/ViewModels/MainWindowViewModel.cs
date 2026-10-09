@@ -3,28 +3,24 @@ using CommunityToolkit.Mvvm.Input;
 
 namespace Client.ViewModels;
 
-// Styr navigeringen: varje knapp i menyn kör en Command här,
-// den byter CurrentView och ViewLocator visar rätt sida.
 public partial class MainWindowViewModel : ViewModelBase
 {
-    // sidorna i appen, skapas en gång och återanvänds
+    // sidorna i appen, skapas en gång
     private readonly HomeViewModel _homeViewModel = new();
     private readonly ProductViewModel _productViewModel = new();
     private readonly OrdersViewModel _ordersViewModel = new();
     private readonly CustomersViewModel _customersViewModel = new();
 
-    // sidan som visas just nu. [ObservableProperty] skapar egenskapen CurrentView
-    // och säger till MainWindow varje gång den ändras.
+    // sidan som visas just nu
     [ObservableProperty]
     private ViewModelBase? _currentView;
 
     public MainWindowViewModel()
     {
-        // startsidan
         CurrentView = _homeViewModel;
     }
 
-    // [RelayCommand] skapar GoToHomeCommand osv. som knapparna i XAML binder till
+    // [RelayCommand] gör GoToHomeCommand osv. som knapparna i MainWindow använder
     [RelayCommand]
     private void GoToHome()
     {

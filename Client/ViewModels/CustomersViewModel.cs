@@ -7,8 +7,7 @@ namespace Client.ViewModels;
 
 public partial class CustomersViewModel : ViewModelBase
 {
-    // listan som CustomersView visar. ObservableCollection säger till sidan
-    // när något läggs till eller tas bort.
+    // listan som CustomersView visar
     [ObservableProperty]
     private ObservableCollection<Customer> _customers;
 

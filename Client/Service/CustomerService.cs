@@ -3,7 +3,7 @@ using Client.Models;
 
 namespace Client.Service;
 
-// Ger oss kunderna. Just nu två påhittade, senare kommer de från en fil eller databas.
+// kunderna är påhittade än så länge
 public class CustomerService
 {
     public static List<Customer> ListAllCustomers()

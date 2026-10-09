@@ -1,7 +1,6 @@
 namespace Client.ViewModels;
 
-// Sidan för beställningar. Tom just nu, listan med beställningar kommer senare.
-// Namnet måste sluta på ViewModel så att ViewLocator hittar OrdersView.
+// tom än så länge, beställningarna kommer senare
 public class OrdersViewModel : ViewModelBase
 {
 }

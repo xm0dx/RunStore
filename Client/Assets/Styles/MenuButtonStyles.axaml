@@ -11,7 +11,7 @@
         </Border>
     </Design.PreviewWith>
 
-    <!-- Knapparna i menyn. Används med Classes="menu" i MainWindow.axaml -->
+    <!-- menyknapparna, Classes="menu" -->
     <Style Selector="Button.menu">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Foreground" Value="{DynamicResource PrimaryTextColor}" />
@@ -24,14 +24,14 @@
         <Setter Property="HorizontalContentAlignment" Value="Left" />
     </Style>
 
-    <!-- När musen är över en menyknapp -->
+    <!-- hover -->
     <Style Selector="Button.menu:pointerover /template/ ContentPresenter">
         <Setter Property="Background" Value="{DynamicResource AccentColor}" />
         <Setter Property="Foreground" Value="{DynamicResource PrimaryBackgroundColor}" />
         <Setter Property="FontWeight" Value="SemiBold" />
     </Style>
 
-    <!-- Ikon och text i en menyknapp ligger mitt i höjdled, annars hamnar texten högre än ikonen -->
+    <!-- ikon och text på samma höjd -->
     <Style Selector="Button.menu Label">
         <Setter Property="VerticalAlignment" Value="Center" />
     </Style>

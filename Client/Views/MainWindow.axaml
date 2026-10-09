@@ -8,67 +8,56 @@
         x:DataType="vm:MainWindowViewModel"
         Title="RunStore">
 
-    <!--
-      Så funkar navigeringen:
-      knapp -> Command i MainWindowViewModel -> CurrentView byts -> ViewLocator visar rätt View.
-    -->
-
     <Design.DataContext>
         <vm:MainWindowViewModel />
     </Design.DataContext>
 
-    <!-- Vänster: menyn (200 px). Höger: sidan som CurrentView pekar på. -->
+    <!-- meny till vänster, sidan till höger -->
     <Grid ColumnDefinitions="200, *" Background="{DynamicResource PrimaryBackgroundColor}">
 
         <Border Padding="10" Background="{DynamicResource PrimaryBackgroundGradient}">
-            <!-- Rad 0 tar all plats som finns, rad 1 (Settings) stannar längst ner -->
             <Grid RowDefinitions="*, Auto">
 
                 <StackPanel>
-                    <!-- Logotyp och namn -->
                     <StackPanel Orientation="Horizontal" Spacing="8" Margin="0,0,0,10">
                         <Svg Width="44" Path="/Assets/Images/runstore.svg" />
                         <Label Content="RunStore" FontSize="24" FontWeight="Bold" VerticalAlignment="Center" Foreground="{DynamicResource AccentColor}" />
                     </StackPanel>
 
-                    <!--
-                      Classes="menu" = utseendet, se MenuButtonStyles.axaml
-                      Classes="icon" = ikonfonten, se AppStyles.axaml
-                      Koden i Content är ikonens nummer i Phosphor-fonten, namnet står i kommentaren.
-                    -->
+                    <!-- ikonerna kommer från Phosphor-fonten, koden är ikonens nummer -->
                     <Button Classes="menu" Command="{Binding GoToHomeCommand}">
                         <StackPanel Orientation="Horizontal" Spacing="10">
-                            <Label Classes="icon" Content="&#xe2c2;" /> <!-- house -->
+                            <Label Classes="icon" Content="&#xe2c2;" />
                             <Label Content="Home" />
                         </StackPanel>
                     </Button>
 
                     <Button Classes="menu" Command="{Binding GoToProductsCommand}">
                         <StackPanel Orientation="Horizontal" Spacing="10">
-                            <Label Classes="icon" Content="&#xe416;" /> <!-- shopping-bag -->
+                            <Label Classes="icon" Content="&#xe416;" />
                             <Label Content="Products" />
                         </StackPanel>
                     </Button>
 
                     <Button Classes="menu" Command="{Binding GoToOrdersCommand}">
                         <StackPanel Orientation="Horizontal" Spacing="10">
-                            <Label Classes="icon" Content="&#xe3ec;" /> <!-- receipt -->
+                            <Label Classes="icon" Content="&#xe3ec;" />
                             <Label Content="Orders" />
                         </StackPanel>
                     </Button>
 
                     <Button Classes="menu" Command="{Binding GoToCustomersCommand}">
                         <StackPanel Orientation="Horizontal" Spacing="10">
-                            <Label Classes="icon" Content="&#xe4d6;" /> <!-- users -->
+                            <Label Classes="icon" Content="&#xe4d6;" />
                             <Label Content="Customers" />
                         </StackPanel>
                     </Button>
                 </StackPanel>
 
-                <!-- Ingen Command ännu, så knappen gör inget när man klickar -->
+                <!-- ingen command än -->
                 <Button Classes="menu" Grid.Row="1">
                     <StackPanel Orientation="Horizontal" Spacing="10">
-                        <Label Classes="icon" Content="&#xe270;" /> <!-- gear -->
+                        <Label Classes="icon" Content="&#xe270;" />
                         <Label Content="Settings" />
                     </StackPanel>
                 </Button>
@@ -76,7 +65,7 @@
             </Grid>
         </Border>
 
-        <!-- Här ritas sidan. Content är en ViewModel och ViewLocator byter ut den mot rätt View. -->
+        <!-- här visas sidan som CurrentView pekar på -->
         <UserControl Grid.Column="1" Content="{Binding CurrentView}" Padding="20" />
     </Grid>
 </Window>

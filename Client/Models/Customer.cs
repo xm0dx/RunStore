@@ -1,7 +1,6 @@
 namespace Client.Models;
 
-// En kund i butiken. required = måste få ett värde när objektet skapas,
-// ? = får vara tomt (null).
+// en kund i butiken, ? betyder att fältet får vara tomt
 public class Customer
 {
     public int Id { get; set; }

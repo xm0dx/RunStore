@@ -5,19 +5,17 @@
              RequestedThemeVariant="Default">
     <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
 
-    <!-- ViewLocator väljer rätt View för varje ViewModel (HomeViewModel -> HomeView) -->
     <Application.DataTemplates>
         <local:ViewLocator />
     </Application.DataTemplates>
 
     <Application.Styles>
         <FluentTheme />
-        <!-- Stilar: allmänna i AppStyles, menyknapparna i MenuButtonStyles -->
         <StyleInclude Source="Assets/Styles/AppStyles.axaml" />
         <StyleInclude Source="Assets/Styles/MenuButtonStyles.axaml" />
     </Application.Styles>
 
-    <!-- Färgerna för hela appen. Ändra här så följer alla sidor med. -->
+    <!-- färger och typsnitt för hela appen -->
     <Application.Resources>
         <SolidColorBrush x:Key="PrimaryTextColor" Color="#F4EFE6" />
         <SolidColorBrush x:Key="AccentColor" Color="#FF9F1C" />

@@ -1,12 +1,12 @@
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using Client.Models;
 using Client.Repositories;
 
 namespace Client.Service;
 
-// Läser och sparar butikens produkter i JSON.
+// hämtar och sparar produkterna i Data/Product.json
 public class ProductService
 {
     private static readonly string ProductFilePath = Path.Combine(AppContext.BaseDirectory, "Data", "Product.json");
@@ -17,5 +17,8 @@ public class ProductService
         return ProductStorage.Read(ProductFilePath);
     }
 
-    public static void SaveProducts(List<Product> products) => ProductStorage.Write(ProductFilePath, products);
+    public static void SaveProducts(List<Product> products)
+    {
+        ProductStorage.Write(ProductFilePath, products);
+    }
 }

@@ -1,10 +1,10 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace Client.ViewModels;
 
 public partial class ViewModelBase : ObservableObject
 {
+    // rubriken som varje sida visar
     [ObservableProperty]
-    public partial string PageTitle { get; set; } = "";
-
+    private string _pageTitle = "";
 }

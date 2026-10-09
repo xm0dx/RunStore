@@ -15,7 +15,7 @@
   <StackPanel Margin="20" Spacing="12">
     <TextBlock Classes="h1" Text="{Binding PageTitle}" />
 
-    <!-- Rubrikraden. Kolumnerna måste vara samma som i raderna nedanför. -->
+    <!-- rubrikrad, samma kolumner som raderna -->
     <Border BorderBrush="{DynamicResource AccentColor}" BorderThickness="0 0 0 2">
       <Grid ColumnDefinitions="200,100,100,*,150">
         <Label Grid.Column="0" Content="Name" />
@@ -26,7 +26,7 @@
       </Grid>
     </Border>
 
-    <!-- En rad per produkt i Products. x:DataType säger att varje rad är en Product. -->
+    <!-- en rad per produkt -->
     <ItemsControl ItemsSource="{Binding Products}">
       <ItemsControl.ItemTemplate>
         <DataTemplate x:DataType="models:Product">

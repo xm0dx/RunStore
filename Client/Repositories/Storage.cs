@@ -1,37 +1,42 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
-using Client.Interface;
+using Client.Interfaces;
 
-namespace Client.Repositories
+namespace Client.Repositories;
+
+// läser och skriver en lista av T till en json-fil
+public class Storage<T> : IStorage<T> where T : class
 {
-    public class Storage<T> : Istorage<T> where T : class
+    public List<T> Read(string path)
     {
-        public List<T> Read(string path)
+        // finns ingen fil än får vi en tom lista
+        if (!File.Exists(path))
         {
-            if (!File.Exists(path))
-                return new List<T>(); // return an empty list if the file doesn't exist
-
-            var json = File.ReadAllText(path);
-            var items = JsonSerializer.Deserialize<List<T>>(json, new JsonSerializerOptions
-            {
-                PropertyNameCaseInsensitive = true // ignore case when deserializing JSON
-            });
-            return items ?? new List<T>(); // deserialize the JSON string to a list of T objects
+            return new List<T>();
         }
 
-        public void Write(string path, List<T> data)
-        {
-            var directory = Path.GetDirectoryName(Path.GetFullPath(path));
-            if (directory is not null)
-                Directory.CreateDirectory(directory);
+        var json = File.ReadAllText(path);
+        var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+        var items = JsonSerializer.Deserialize<List<T>>(json, options);
 
-            var json = JsonSerializer.Serialize(data, new JsonSerializerOptions
-            {
-                WriteIndented = true,
-                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
-            });
-            File.WriteAllText(path, json);
+        return items ?? new List<T>();
+    }
+
+    public void Write(string path, List<T> data)
+    {
+        var directory = Path.GetDirectoryName(path);
+        if (directory is not null)
+        {
+            Directory.CreateDirectory(directory);
         }
+
+        var options = new JsonSerializerOptions
+        {
+            WriteIndented = true,
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+        };
+        var json = JsonSerializer.Serialize(data, options);
+        File.WriteAllText(path, json);
     }
 }
