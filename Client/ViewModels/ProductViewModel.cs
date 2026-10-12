@@ -1,5 +1,6 @@
 using System;
 using System.Collections.ObjectModel;
+using Client.Interface;
 using Client.Models;
 using Client.Service;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -8,13 +9,15 @@ namespace Client.ViewModels;
 
 public partial class ProductViewModel : ViewModelBase
 {
+    private readonly IProductService _service;
     // listan som ProductView visar
     [ObservableProperty]
     private ObservableCollection<Product> _products = new();
 
-    public ProductViewModel()
+    public ProductViewModel(IProductService service)
     {
         PageTitle = "Products in RunStore!";
+        _service = service;
         LoadProducts();
     }
 
@@ -23,7 +26,8 @@ public partial class ProductViewModel : ViewModelBase
         try
         {
             // hämtar alla produkter från databasen
-            Products = new ObservableCollection<Product>(ProductService.ListAllProducts());
+            Products = new ObservableCollection<Product>(_service.List()); // Fyller listan med produkter
+
         }
         catch (Exception ex)
         {

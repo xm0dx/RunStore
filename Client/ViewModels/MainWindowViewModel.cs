@@ -1,5 +1,7 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Client.Service;
+using Client.Views;
 
 namespace Client.ViewModels;
 
@@ -7,7 +9,7 @@ public partial class MainWindowViewModel : ViewModelBase
 {
     // sidorna i appen, skapas en gång
     private readonly HomeViewModel _homeViewModel = new();
-    private readonly ProductViewModel _productViewModel = new();
+    private readonly ProductViewModel _productViewModel;
     private readonly OrdersViewModel _ordersViewModel = new();
     private readonly CustomersViewModel _customersViewModel = new();
 
@@ -15,8 +17,9 @@ public partial class MainWindowViewModel : ViewModelBase
     [ObservableProperty]
     private ViewModelBase? _currentView;
 
-    public MainWindowViewModel()
+    public MainWindowViewModel(ProductViewModel productViewModel)
     {
+        _productViewModel = productViewModel;
         CurrentView = _homeViewModel;
     }
 

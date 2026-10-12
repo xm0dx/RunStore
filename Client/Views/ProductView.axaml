@@ -8,10 +8,6 @@
              x:Class="Client.Views.ProductView"
              x:DataType="vm:ProductViewModel">
 
-  <Design.DataContext>
-    <vm:ProductViewModel />
-  </Design.DataContext>
-
   <!-- sista raden (*) tar resten av höjden så listan kan scrolla -->
   <Grid Margin="20" RowDefinitions="Auto,Auto,*">
     <TextBlock Grid.Row="0" Classes="h1" Text="{Binding PageTitle}" Margin="0 0 0 12" />
@@ -43,12 +39,12 @@
               <Button Grid.Column="5" Command="{Binding Delete}" Classes="rowIcon" Content="&#xe4a6;" Foreground="#E5533D" />
 
               <!-- beskrivningen är bortkommenterad, texten är för lång för tabellen.
-                   Vill du ha den tillbaka: lägg till en kolumn * sist i båda griddarna och ta bort kommentaren.
+              Vill du ha den tillbaka: lägg till en kolumn * sist i båda griddarna och ta bort kommentaren.
               <TextBlock Grid.Column="6"
-                         Text="{Binding Description}"
-                         TextWrapping="Wrap"
-                         MaxLines="3"
-                         TextTrimming="CharacterEllipsis" />
+              Text="{Binding Description}"
+              TextWrapping="Wrap"
+              MaxLines="3"
+              TextTrimming="CharacterEllipsis" />
               -->
             </Grid>
           </DataTemplate>
