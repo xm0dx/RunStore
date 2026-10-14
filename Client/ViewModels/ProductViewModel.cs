@@ -14,7 +14,7 @@ public partial class ProductViewModel : ViewModelBase
     [ObservableProperty]
     private ObservableCollection<Product> _products = new();
 
-    public ProductViewModel(IProductService service)
+    public ProductViewModel(IProductService service) // konstruktor som tar emot ProductService som parameter
     {
         PageTitle = "Products in RunStore!";
         _service = service;

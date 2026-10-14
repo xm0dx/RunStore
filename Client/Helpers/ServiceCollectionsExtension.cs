@@ -12,8 +12,12 @@ namespace Client.Helpers
             // Registrerar ProductService som en singleton
             // Collection.AddSingleton<MainViewModel>();
             // Collections.addSingleton<IProductService.ProductService>();
-            collection.AddSingleton<ProductViewModel>();
-            collection.AddSingleton<IProductService, ProductService>();
+            collection.AddTransient<ProductViewModel>();
+            collection.AddTransient<HomeViewModel>();
+            collection.AddTransient<OrdersViewModel>();
+            collection.AddTransient<CustomersViewModel>();
+            collection.AddTransient<MainWindowViewModel>();
+            collection.AddTransient<IProductService, ProductService>();
         }
     }
 }
