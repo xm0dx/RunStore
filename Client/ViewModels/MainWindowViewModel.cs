@@ -1,56 +1,47 @@
+using Client.Factory;
+using Client.Helpers;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Client.Service;
-using Client.Views;
 
 namespace Client.ViewModels;
 
 public partial class MainWindowViewModel : ViewModelBase
 {
-    // sidorna i appen, skapas en gång
-    private readonly HomeViewModel _homeViewModel;
-    private readonly ProductViewModel _productViewModel;
-    private readonly OrdersViewModel _ordersViewModel;
-    private readonly CustomersViewModel _customersViewModel;
+    // fabriken skapar sidorna, MainWindowViewModel behöver inte känna till dem själv
+    private readonly PageViewFactory _factory;
 
     // sidan som visas just nu
     [ObservableProperty]
     private ViewModelBase? _currentView;
 
-    public MainWindowViewModel(ProductViewModel productViewModel, HomeViewModel homeViewModel, OrdersViewModel ordersViewModel, CustomersViewModel customersViewModel) // konstruktor som tar emot de olika sidorna som parametrar
+    public MainWindowViewModel(PageViewFactory factory)
     {
-        _productViewModel = productViewModel;
-        _homeViewModel = homeViewModel;
-        _ordersViewModel = ordersViewModel;
-        _customersViewModel = customersViewModel; // sidorna i appen, skapas en gång // Konstruktor injection används för att skicka in de olika sidorna som parametrar, så att de kan användas i MainWindowViewModel
-
-        CurrentView = _homeViewModel;
+        _factory = factory;
+        GoToHome();
     }
 
     // [RelayCommand] gör GoToHomeCommand osv. som knapparna i MainWindow använder
     [RelayCommand]
     private void GoToHome()
     {
-        CurrentView = _homeViewModel;
+        CurrentView = _factory.LoadPageViewModel(ApplicationNameEnum.Home);
     }
 
     [RelayCommand]
     private void GoToProducts()
     {
-        CurrentView = _productViewModel;
+        CurrentView = _factory.LoadPageViewModel(ApplicationNameEnum.Products);
     }
 
     [RelayCommand]
     private void GoToOrders()
     {
-        CurrentView = _ordersViewModel;
+        CurrentView = _factory.LoadPageViewModel(ApplicationNameEnum.Orders);
     }
 
     [RelayCommand]
     private void GoToCustomers()
     {
-        CurrentView = _customersViewModel;
+        CurrentView = _factory.LoadPageViewModel(ApplicationNameEnum.Customers);
     }
-
-    // [RelayCommand] gör GoToHomeCommand osv. som knapparna i MainWindow använder
 }

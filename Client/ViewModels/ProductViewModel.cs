@@ -1,33 +1,47 @@
 using System;
 using System.Collections.ObjectModel;
+using Client.Helpers;
 using Client.Interface;
 using Client.Models;
-using Client.Service;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
 namespace Client.ViewModels;
 
-public partial class ProductViewModel : ViewModelBase
+public partial class ProductViewModel : PageViewModel
 {
     private readonly IProductService _service;
+
     // listan som ProductView visar
     [ObservableProperty]
     private ObservableCollection<Product> _products = new();
 
-    public ProductViewModel(IProductService service) // konstruktor som tar emot ProductService som parameter
+    public ProductViewModel(IProductService service)
     {
-        PageTitle = "Products in RunStore!";
         _service = service;
+        PageName = ApplicationNameEnum.Products;
+        PageTitle = "Products in RunStore!";
         LoadProducts();
+    }
+
+    // knapparna på raderna skickar med produktens artikelnummer
+    [RelayCommand]
+    private void Edit(string id)
+    {
+        Console.WriteLine("Ändra produkt " + id);
+    }
+
+    [RelayCommand]
+    private void Delete(string id)
+    {
+        Console.WriteLine("Ta bort produkt " + id);
     }
 
     private void LoadProducts()
     {
         try
         {
-            // hämtar alla produkter från databasen
-            Products = new ObservableCollection<Product>(_service.List()); // Fyller listan med produkter
-
+            Products = new ObservableCollection<Product>(_service.List());
         }
         catch (Exception ex)
         {

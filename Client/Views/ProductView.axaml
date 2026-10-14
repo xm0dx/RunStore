@@ -27,16 +27,17 @@
     <ScrollViewer Grid.Row="2">
       <ItemsControl ItemsSource="{Binding Products}">
         <ItemsControl.ItemTemplate>
-          <DataTemplate x:DataType="models:Product">
+          <DataTemplate>
             <Grid ColumnDefinitions="200,100,100,150,40,40">
               <Label Grid.Column="0" Content="{Binding Name}" />
               <Label Grid.Column="1" Content="{Binding ItemNumber}" />
               <Label Grid.Column="2" Content="{Binding Price}" />
               <Label Grid.Column="3" Content="{Binding SupplierName}" />
 
-              <!-- knapparna kör Edit och Delete på radens produkt -->
-              <Button Grid.Column="4" Command="{Binding Edit}" Classes="rowIcon" Content="&#xebc6;" Foreground="Green" />
-              <Button Grid.Column="5" Command="{Binding Delete}" Classes="rowIcon" Content="&#xe4a6;" Foreground="#E5533D" />
+              <!-- raden är en Product, så knappen går upp till sidans ViewModel ($parent[UserControl])
+                   och skickar med artikelnumret som parameter -->
+              <Button Grid.Column="4" Command="{Binding $parent[UserControl].DataContext.EditCommand}" CommandParameter="{Binding ItemNumber}" Classes="rowIcon" Content="&#xebc6;" Foreground="Green" />
+              <Button Grid.Column="5" Command="{Binding $parent[UserControl].DataContext.DeleteCommand}" CommandParameter="{Binding ItemNumber}" Classes="rowIcon" Content="&#xe4a6;" Foreground="#E5533D" />
 
               <!-- beskrivningen är bortkommenterad, texten är för lång för tabellen.
               Vill du ha den tillbaka: lägg till en kolumn * sist i båda griddarna och ta bort kommentaren.

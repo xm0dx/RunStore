@@ -1,19 +1,24 @@
 using System;
 using System.Collections.ObjectModel;
+using Client.Helpers;
+using Client.Interface;
 using Client.Models;
-using Client.Service;
 using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace Client.ViewModels;
 
-public partial class CustomersViewModel : ViewModelBase
+public partial class CustomersViewModel : PageViewModel
 {
+    private readonly ICustomerService _customerService;
+
     // listan som CustomersView visar
     [ObservableProperty]
     private ObservableCollection<Customer> _customers = new();
 
-    public CustomersViewModel()
+    public CustomersViewModel(ICustomerService customerService)
     {
+        _customerService = customerService;
+        PageName = ApplicationNameEnum.Customers;
         PageTitle = "Kund Lista";
         LoadCustomers();
     }
@@ -22,7 +27,7 @@ public partial class CustomersViewModel : ViewModelBase
     {
         try
         {
-            Customers = new ObservableCollection<Customer>(CustomerService.ListAllCustomers());
+            Customers = new ObservableCollection<Customer>(_customerService.List());
         }
         catch (Exception ex)
         {
