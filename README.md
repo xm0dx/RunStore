@@ -8,14 +8,14 @@ Projektet växer för varje lektion, allt ligger i mappen `Client`.
 | Mapp | Vad som ska ligga här |
 |---|---|
 | `Models` | Klasser som bara håller data: `Product`, `Customer`. Inga metoder som gör något. |
-| `Service` | Klasser som hämtar och sparar data: `ProductService`, `CustomerService`. Sidorna frågar alltid en service, aldrig filen direkt. |
-| `Interface` | Kontrakt: `Istorage<T>`, `IProductService`, `ICustomerService`, `IPageViewFactory`. ViewModels pratar med interfacen, inte med klasserna. |
+| `Services` | Klasser som hämtar och sparar data: `ProductServices`, `CustomerServices`. Sidorna frågar alltid en service, aldrig filen direkt. |
+| `Interfaces` | Kontrakt: `IStorage<T>`, `IProductService`, `ICustomerService`, `IPageViewFactory`. ViewModels pratar med interfacen, inte med klasserna. |
 | `Repositories` | `Storage<T>` som läser och skriver en lista till en json-fil. |
-| `Helpers` | `ServiceCollectionsExtension` med `AddServices` som registrerar alla klasser för dependency injection, och `ApplicationNameEnum` med sidornas namn. |
-| `Factory` | `PageViewFactory` som skapar rätt sida utifrån ett namn i enumen. |
+| `Helpers` | `ServiceCollectionExtensions` med `AddServices` som registrerar alla klasser för dependency injection, och `ApplicationNameEnum` med sidornas namn. |
+| `Factories` | `PageViewFactory` som skapar rätt sida utifrån ett namn i enumen. |
 | `Data` | Json-filerna med data, till exempel `Product.json`. Kopieras till bin-mappen vid bygge (se `Client.csproj`). |
 | `ViewModels` | En klass per sida med sidans logik och data. Sidorna ärver `PageViewModel`, som ärver `ViewModelBase`. |
-| `Views` | En axaml-fil per sida. `ViewLocator` hittar rätt View genom namnet: `ProductViewModel` visas med `ProductView`. |
+| `Views` | En axaml-fil per sida. `ViewLocator` hittar rätt View genom namnet: `ProductsViewModel` visas med `ProductsView`. |
 | `Assets` | Bilder, typsnitt och stilfiler. `Styles/AppStyles.axaml` för hela appen, `Styles/MenuButtonStyles.axaml` för menyn. |
 
 Färger och typsnitt finns på ett ställe: `App.axaml` under `Application.Resources`.
@@ -32,19 +32,19 @@ I VS Code: välj "Run RunStore" i Run and Debug och tryck F5. Det funkar oavsett
 - **Ny sida:** en klass i `ViewModels` som slutar på `ViewModel`, en axaml i `Views` som slutar på `View`,
   ett fält och en `[RelayCommand]`-metod i `MainWindowViewModel`, en knapp i `MainWindow.axaml`.
 - **Ny data i json:** lägg filen i `Data`, lägg till en rad för den i `Client.csproj` som för `Product.json`,
-  skapa en service som använder `Storage<T>` på samma sätt som `ProductService`.
+  skapa en service som använder `Storage<T>` på samma sätt som `ProductServices`.
 - **Ny modell:** en klass i `Models` med samma fält som json-filen har.
 
 ## Ändringar, lektion för lektion
 
 | Datum | Vad |
 |---|---|
-| 2026-10-02 | Projektet skapat (lektion 16). MVVM med `ViewModelBase`, `MainWindowViewModel` med `CurrentView`, `HomeView` och `ProductView`, `ViewLocator`. Färger som resurser i `App.axaml`. |
+| 2026-10-02 | Projektet skapat (lektion 16). MVVM med `ViewModelBase`, `MainWindowViewModel` med `CurrentView`, `HomeView` och `ProductsView`, `ViewLocator`. Färger som resurser i `App.axaml`. |
 | 2026-10-07 | Logotyp som svg (`Svg.Controls.Skia.Avalonia`), ikoner från Phosphor-fonten i menyn, Montserrat som typsnitt. Menyknapparna fick `Classes="menu"` med egen stilfil. Uppgift 1 lektion 17: sidorna `Orders` och `Customers` med egna ViewModels, Views, commands och knappar. |
-| 2026-10-08 | Produktlista: `Product`, `ProductService`, `ObservableCollection<Product>` i `ProductViewModel`, `ItemsControl` med rubrikrad i `ProductView`. `PageTitle` i `ViewModelBase`. `Window`-stil som sätter typsnitt och färger för hela appen. |
-| 2026-10-09 | Kundlista på samma sätt. `Istorage<T>` och `Storage<T>` som läser och skriver json. `Data/Product.json` och `Data/Customer.json`, csproj kopierar `Data/*.json` till bin. try/catch när listorna läses in. Ändra- och Radera-knapp på varje rad. README, F5-konfiguration "Run RunStore". |
+| 2026-10-08 | Produktlista: `Product`, `ProductServices`, `ObservableCollection<Product>` i `ProductsViewModel`, `ItemsControl` med rubrikrad i `ProductsView`. `PageTitle` i `ViewModelBase`. `Window`-stil som sätter typsnitt och färger för hela appen. |
+| 2026-10-09 | Kundlista på samma sätt. `IStorage<T>` och `Storage<T>` som läser och skriver json. `Data/products.json` och `Data/customers.json`, csproj kopierar `Data/*.json` till bin. try/catch när listorna läses in. Ändra- och Radera-knapp på varje rad. README, F5-konfiguration "Run RunStore". |
 | 2026-10-12 | Lektion 20, dependency injection. Paketet `Microsoft.Extensions.DependencyInjection`, `AddServices` i `Helpers`, `IProductService` och `ICustomerService`. ViewModels får sina services i konstruktorn i stället för att skapa dem själva. `App.axaml.cs` bygger en `ServiceProvider` och hämtar `MainWindowViewModel` därifrån. |
-| 2026-10-14 | Lektion 21, factory design pattern. `ApplicationNameEnum`, basklassen `PageViewModel` med `PageName`, `PageViewFactory` som skapar sidor via en `Func` som registreras i `AddServices`. `MainWindowViewModel` känner bara fabriken. `Product` är en `record` utan metoder, Ändra och Radera är commands i `ProductViewModel` med artikelnumret som parameter. Egen konsoldemo av mönstret i `my-work/FactoryDesignPattern`. |
+| 2026-10-14 | Lektion 21, factory design pattern. `ApplicationNameEnum`, basklassen `PageViewModel` med `PageName`, `PageViewFactory` som skapar sidor via en `Func` som registreras i `AddServices`. `MainWindowViewModel` känner bara fabriken. `Product` är en `record` utan metoder, Ändra och Radera är commands i `ProductsViewModel` med artikelnumret som parameter. Egen konsoldemo av mönstret i `my-work/FactoryDesignPattern`. |
 
 ## Frågor jag ska kunna svara på
 
@@ -54,8 +54,8 @@ håller värden och commands som vyn binder till. Vyn vet inte var datan kommer 
 det ser ut. Därför kan jag byta utseende utan att röra logiken, och tvärtom.
 
 **Hur hittar ViewLocator rätt vy?**
-Den tar ViewModelns fulla namn, `Client.ViewModels.ProductViewModel`, byter ut `ViewModel` mot `View` och får
-`Client.Views.ProductView`. Den skapar vyn med `Activator.CreateInstance` och sätter vyns `DataContext` till
+Den tar ViewModelns fulla namn, `Client.ViewModels.ProductsViewModel`, byter ut `ViewModel` mot `View` och får
+`Client.Views.ProductsView`. Den skapar vyn med `Activator.CreateInstance` och sätter vyns `DataContext` till
 ViewModeln. Därför måste namnen sluta exakt på `ViewModel` och `View`.
 
 **Hur funkar navigeringen?**
@@ -76,15 +76,15 @@ En `ObservableCollection` säger till vyn när något läggs till eller tas bort
 direkt. En `List` säger ingenting. Men den säger inte till om en egenskap inuti en `Product` ändras, för `Product`
 meddelar inte sina ändringar. Det blir viktigt när Ändra ska fungera på riktigt.
 
-**Vad är `Storage<T>` och `Istorage<T>`?**
-`Istorage<T>` är kontraktet: en lagring ska kunna `Read` och `Write` en lista. `Storage<T>` är klassen som gör det
+**Vad är `Storage<T>` och `IStorage<T>`?**
+`IStorage<T>` är kontraktet: en lagring ska kunna `Read` och `Write` en lista. `Storage<T>` är klassen som gör det
 med json. `T` byts mot `Product` eller `Customer`, samma klass funkar för båda. Den läser med
 `JsonSerializer.Deserialize<List<T>>` och skriver med `JsonSerializer.Serialize`. Samma `JsonSerializerOptions`
 används åt båda håll: camelCase, indenterat, `PropertyNameCaseInsensitive` och en `Encoder` som gör att å, ä och ö
 skrivs som bokstäver i filen.
 
 **Varför en service mellan sidan och filen?**
-`ProductViewModel` frågar `ProductService.ListAllProducts()`, inte filen. Byter vi json mot en databas ändras bara
+`ProductsViewModel` frågar `ProductServices.ListAllProducts()`, inte filen. Byter vi json mot en databas ändras bara
 servicen, sidorna märker ingenting.
 
 **Var ligger json-filen när programmet kör?**
@@ -123,7 +123,7 @@ programmet. `App.axaml` gör fonten till resursen `IconFont` med adressen `avare
 `&#xe2c2;` är numret på ikonen house i fonten.
 
 **Varför är metoderna i servicen `static`?**
-De tillhör klassen, inte ett objekt, så jag kan skriva `ProductService.ListAllProducts()` utan `new`. Enkelt så länge
+De tillhör klassen, inte ett objekt, så jag kan skriva `ProductServices.ListAllProducts()` utan `new`. Enkelt så länge
 servicen inte har något eget tillstånd.
 
 **Vad gör `partial`?**
@@ -131,9 +131,9 @@ Klassen är delad i flera filer. För ViewModels skriver jag en del och MVVM-too
 `MainWindow.axaml.cs` min del och axaml-kompilatorn gör den andra.
 
 **Vad är dependency injection?**
-I stället för att en klass skapar det den behöver med `new`, får den det i konstruktorn. `ProductViewModel(IProductService service)`
+I stället för att en klass skapar det den behöver med `new`, får den det i konstruktorn. `ProductsViewModel(IProductService service)`
 säger "ge mig något som kan lista produkter". Vem som skickar in det bestäms på ett ställe, i `AddServices`. Fördelen är att jag kan
-byta `ProductService` mot en annan klass, till exempel en som läser från en databas, utan att röra ViewModeln.
+byta `ProductServices` mot en annan klass, till exempel en som läser från en databas, utan att röra ViewModeln.
 
 **Vad gör `AddServices` och `ServiceProvider`?**
 `AddServices` är en lista över alla klasser appen kan behöva och hur de ska skapas. `BuildServiceProvider()` gör en behållare av
@@ -145,13 +145,13 @@ Singleton: ett enda objekt som alla delar, hela tiden appen kör. `MainWindowVie
 Transient: ett nytt objekt varje gång någon ber om ett. Sidorna och services är transient, så varje klick i menyn ger en färsk sida.
 
 **Vad är ett interface till för här?**
-`IProductService` lovar att det finns en metod `List()` som ger `List<Product>`. `ProductViewModel` bryr sig bara om löftet.
-Raden `AddTransient<IProductService, ProductService>()` säger vilken klass som håller löftet just nu. Byt raden, byt beteende.
+`IProductService` lovar att det finns en metod `List()` som ger `List<Product>`. `ProductsViewModel` bryr sig bara om löftet.
+Raden `AddTransient<IProductService, ProductServices>()` säger vilken klass som håller löftet just nu. Byt raden, byt beteende.
 
 **Vad är factory design pattern?**
 En klass vars enda jobb är att skapa rätt objekt. I konsoldemon säger jag `InvoiceTypeEnum.PDF` och `InvoiceFactory` ger mig en
 `PDFCreator`. I RunStore säger `MainWindowViewModel` `ApplicationNameEnum.Products` och `PageViewFactory` ger tillbaka en
-`ProductViewModel`. Den som ber om något behöver inte veta vilka klasser som finns.
+`ProductsViewModel`. Den som ber om något behöver inte veta vilka klasser som finns.
 
 **Vad är `Func<ApplicationNameEnum, PageViewModel>`?**
 En variabel som innehåller en funktion. Typen läses "en funktion som tar ett sidnamn och ger tillbaka en sida". I `AddServices`
@@ -166,14 +166,14 @@ som kan returneras direkt. Används både i `InvoiceFactory` och i `AddServices`
 Alla sidor behöver veta sitt eget namn, `PageName`, så att fabriken och senare menyn kan hålla koll på vilken sida som visas.
 `PageViewModel` ärver `ViewModelBase`, så `PageTitle` finns kvar också.
 
-**Varför flyttade Ändra och Radera från `Product` till `ProductViewModel`?**
+**Varför flyttade Ändra och Radera från `Product` till `ProductsViewModel`?**
 En modell ska bara hålla data. En Radera som ligger i ViewModeln kan ta bort produkten ur `Products` och spara listan, det kan
 en metod på `Product` inte. Knappen på raden når ViewModeln med `$parent[UserControl].DataContext.DeleteCommand` och skickar
 med artikelnumret som `CommandParameter`.
 
 ## Nästa steg
 
-- Låta `Delete(string id)` ta bort produkten ur `Products` och spara med `ProductService.SaveProducts`.
+- Låta `Delete(string id)` ta bort produkten ur `Products` och spara med `ProductServices.SaveProducts`.
 - Ett formulär för att lägga till en ny produkt och en ny kund.
 - Kunder på samma sätt som produkter: commands i `CustomersViewModel` i stället för metoder på `Customer`.
 - Guid som id på `Customer` också, som på `Product`.

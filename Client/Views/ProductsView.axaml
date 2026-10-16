@@ -5,8 +5,8 @@
              xmlns:vm="using:Client.ViewModels"
              xmlns:models="using:Client.Models"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="Client.Views.ProductView"
-             x:DataType="vm:ProductViewModel">
+             x:Class="Client.Views.ProductsView"
+             x:DataType="vm:ProductsViewModel">
 
   <!-- sista raden (*) tar resten av höjden så listan kan scrolla -->
   <Grid Margin="20" RowDefinitions="Auto,Auto,*">

@@ -1,9 +1,9 @@
 using System;
 using Client.Helpers;
-using Client.Interface;
+using Client.Interfaces;
 using Client.ViewModels;
 
-namespace Client.Factory;
+namespace Client.Factories;
 
 // fabriken får en funktion (Func) från ServiceCollection som vet hur varje sida skapas.
 // MainWindowViewModel behöver då bara säga vilket namn den vill ha.

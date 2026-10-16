@@ -1,13 +1,13 @@
 using System;
-using Client.Factory;
-using Client.Interface;
-using Client.Service;
+using Client.Factories;
+using Client.Interfaces;
+using Client.Services;
 using Client.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Client.Helpers;
 
-public static class ServiceCollectionsExtension
+public static class ServiceCollectionExtensions
 {
     public static void AddServices(this IServiceCollection collection)
     {
@@ -15,10 +15,10 @@ public static class ServiceCollectionsExtension
         collection.AddSingleton<PageViewFactory>();
         collection.AddTransient<HomeViewModel>();
         collection.AddTransient<CustomersViewModel>();
-        collection.AddTransient<ProductViewModel>();
+        collection.AddTransient<ProductsViewModel>();
         collection.AddTransient<OrdersViewModel>();
-        collection.AddTransient<IProductService, ProductService>();
-        collection.AddTransient<ICustomerService, CustomerService>();
+        collection.AddTransient<IProductService, ProductServices>();
+        collection.AddTransient<ICustomerService, CustomerServices>();
 
         // funktionen som fabriken använder: ett namn in, rätt sida ut
         collection.AddSingleton<Func<ApplicationNameEnum, PageViewModel>>(c => name => name switch
@@ -26,7 +26,7 @@ public static class ServiceCollectionsExtension
             ApplicationNameEnum.Home => c.GetRequiredService<HomeViewModel>(),
             ApplicationNameEnum.Customers => c.GetRequiredService<CustomersViewModel>(),
             ApplicationNameEnum.Orders => c.GetRequiredService<OrdersViewModel>(),
-            ApplicationNameEnum.Products => c.GetRequiredService<ProductViewModel>(),
+            ApplicationNameEnum.Products => c.GetRequiredService<ProductsViewModel>(),
             _ => throw new InvalidOperationException("Okänd sida")
         });
     }

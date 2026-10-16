@@ -2,12 +2,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text.Encodings.Web;
 using System.Text.Json;
-using Client.Interface;
+using Client.Interfaces;
 
 namespace Client.Repositories;
 
 // läser och skriver en lista av T till en json-fil
-public class Storage<T> : Istorage<T> where T : class
+public class Storage<T> : IStorage<T> where T : class
 {
     // samma inställningar för läsning och skrivning
     private readonly JsonSerializerOptions _options = new()

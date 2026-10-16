@@ -1,4 +1,4 @@
-using Client.Factory;
+using Client.Factories;
 using Client.Helpers;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;

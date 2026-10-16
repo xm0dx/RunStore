@@ -1,16 +1,16 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using Client.Interface;
+using Client.Interfaces;
 using Client.Models;
 using Client.Repositories;
 
-namespace Client.Service;
+namespace Client.Services;
 
-// hämtar och sparar produkterna i Data/Product.json
-public class ProductService : IProductService
+// hämtar och sparar produkterna i Data/products.json
+public class ProductServices : IProductService
 {
-    private static readonly string ProductFilePath = Path.Combine(AppContext.BaseDirectory, "Data", "Product.json");
+    private static readonly string ProductFilePath = Path.Combine(AppContext.BaseDirectory, "Data", "products.json");
     private static readonly Storage<Product> ProductStorage = new();
 
     public List<Product> List()

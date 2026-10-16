@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Client.Models;
 
-namespace Client.Interface;
+namespace Client.Interfaces;
 
 public interface ICustomerService
 {

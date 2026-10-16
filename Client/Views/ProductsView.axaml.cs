@@ -4,9 +4,9 @@ using Avalonia.Markup.Xaml;
 
 namespace Client.Views;
 
-public partial class ProductView : UserControl
+public partial class ProductsView : UserControl
 {
-    public ProductView()
+    public ProductsView()
     {
         InitializeComponent();
     }

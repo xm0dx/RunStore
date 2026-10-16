@@ -1,7 +1,7 @@
 using Client.Helpers;
 using Client.ViewModels;
 
-namespace Client.Interface;
+namespace Client.Interfaces;
 
 public interface IPageViewFactory
 {

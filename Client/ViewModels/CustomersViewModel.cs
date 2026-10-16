@@ -1,7 +1,7 @@
 using System;
 using System.Collections.ObjectModel;
 using Client.Helpers;
-using Client.Interface;
+using Client.Interfaces;
 using Client.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 

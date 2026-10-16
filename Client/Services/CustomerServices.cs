@@ -1,16 +1,16 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using Client.Interface;
+using Client.Interfaces;
 using Client.Models;
 using Client.Repositories;
 
-namespace Client.Service;
+namespace Client.Services;
 
-// hämtar och sparar kunderna i Data/Customer.json
-public class CustomerService : ICustomerService
+// hämtar och sparar kunderna i Data/customers.json
+public class CustomerServices : ICustomerService
 {
-    private static readonly string CustomerFilePath = Path.Combine(AppContext.BaseDirectory, "Data", "Customer.json");
+    private static readonly string CustomerFilePath = Path.Combine(AppContext.BaseDirectory, "Data", "customers.json");
     private static readonly Storage<Customer> CustomerStorage = new();
 
     public List<Customer> List()

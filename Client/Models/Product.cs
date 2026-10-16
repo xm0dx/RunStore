@@ -1,6 +1,6 @@
 namespace Client.Models;
 
-// en produkt i butiken, samma fält som i Data/Product.json
+// en produkt i butiken, samma fält som i Data/products.json
 public record Product
 {
     public required string Id { get; set; }

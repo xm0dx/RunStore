@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Client.Interface
+namespace Client.Interfaces
 {
-    public interface Istorage<T> where T : class
+    public interface IStorage<T> where T : class
     {
         List<T> Read(string path);
         void Write(string path, List<T> data);

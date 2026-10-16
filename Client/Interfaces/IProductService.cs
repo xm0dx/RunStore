@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Client.Models;
 
-namespace Client.Interface
+namespace Client.Interfaces
 {
     public interface IProductService
     {
